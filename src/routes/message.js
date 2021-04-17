@@ -1,7 +1,7 @@
 const express = require('express');
 const MessageController = require('../controllers/MessageController');
 
-// address - /message
+// address - /<host>:<port>/messages
 // load dependencies
 
 const messageRouter = (dependencies) => {
