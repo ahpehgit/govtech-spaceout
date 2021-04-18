@@ -1,5 +1,6 @@
 const express = require('express');
 const MessageController = require('../controllers/MessageController');
+const authenticateToken = require('./authenticateToken');
 
 // address - /<host>:<port>/messages
 // load dependencies
@@ -10,6 +11,7 @@ const messageRouter = (dependencies) => {
     // load controller with dependencies
     const controller = MessageController(dependencies);
 
+    //router.get('/', authenticateToken, controller.getMessages); //token middleware
     router.get('/', controller.getMessages)    
     return router;
 };
