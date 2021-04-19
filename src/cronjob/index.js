@@ -19,7 +19,7 @@ const start = (dependencies, schedule) => {
             .then(d => console.log(d));
         */
 		
-		await GetFacilities(dependencies);
+		//await GetFacilities(dependencies);
 		await GetCrowdLevels(dependencies);
 
         console.log('Cron job running every 5 seconds');
