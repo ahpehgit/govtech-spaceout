@@ -3,7 +3,7 @@ module.exports = class DBService {
 
     constructor() {
         this.facilityRepository = null;
-        this.crowdRepository = null;
+        this.crowdLevelRepository = null;
         this.messageRepository = null;
     }
 
