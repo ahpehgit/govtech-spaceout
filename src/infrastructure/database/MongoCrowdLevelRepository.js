@@ -23,8 +23,8 @@ module.exports = class MongoCrowdLevelRepository extends CrowdRepository {
     async add(crowdObj) {
         const { id, band, createdAt, trend} = crowdObj;
 
-        const schema = new Model({id, band, createdAt, trend});
-        await schema.save()
+        const CrowdLevel = new Model({id, band, createdAt, trend});
+        await CrowdLevel.save()
         .then(() => {
             console.log('Crowd level inserted'); 
         })
@@ -33,6 +33,19 @@ module.exports = class MongoCrowdLevelRepository extends CrowdRepository {
         });
 
         return new CrowdLevel(id, band, createdAt, trend);
+    }
+
+    async addMany(crowdObjs) {
+
+        await Model.insertMany(crowdObjs)
+        .then(() => {
+            console.log(`${crowdObjs.length} Crowd levels inserted`); 
+        })
+        .catch(err => {
+            throw err;
+        });
+
+        return crowdObjs.map((c) => new CrowdLevel(c.id, c.band, c.createdAt, c.trend));
     }
 
     async getAll(start = 0, limit = 10, filter = {}) {

@@ -42,13 +42,11 @@ module.exports = class MongoDBService extends DBService {
             });
             */
 
-            /*
             this.crowdLevelRepository.deleteAll()
             .then(() => {
-                const timestamp = Date.parse('19 April 2021, 05:00 PM');
-                this.crowdLevelRepository.add({id: 'defc3b96e43b4714924b81117d7337f2', band: -1, createdAt: new Date(timestamp), trend: false})
+                //const timestamp = Date.parse('19 April 2021, 05:00 PM');
+                //this.crowdLevelRepository.add({id: 'defc3b96e43b4714924b81117d7337f2', band: -1, createdAt: new Date(timestamp), trend: false})
             })
-            */
         })
         .catch(error => {
             throw error;

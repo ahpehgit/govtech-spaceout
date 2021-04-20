@@ -12,11 +12,34 @@ const GetCrowdLevels = async(dependencies) => {
     .then(response => {
     	const { data } = response;
     	//console.log('response: ', data.data.facilities)
+		/*
     	data.data.facilities.forEach(d => {
     		const timestamp = Date.parse(d.createdAt);
     		crowdLevelRepository.add({id: d.id, band: d.band, createdAt: new Date(timestamp), trend: d.trend});
     	})
+		*/
+		
+		return new Promise(async (resolve) => {
+			//const d = data.data.facilities[0];
+			//const timestamp = Date.parse(d.createdAt);
+			//await crowdLevelRepository.add({id: d.id, band: d.band, createdAt: new Date(timestamp), trend: d.trend});
+			
+			const arr = [];
+			for (let i=0; i<10; i++) {
+				const timestamp = Date.parse(data.data.facilities[i].createdAt);
+				data.data.facilities[i].createdAt = new Date(timestamp);
+				arr.push(data.data.facilities[i]);
+			}
+			
+			await crowdLevelRepository.addMany(arr);
+
+			resolve();
+		});
     })
+	.then(async () => {
+		const data = await crowdLevelRepository.getAll();
+		console.log(data);
+	})
     .catch(function (error) {
 	    // handle error
 	    console.log('error: ', error);
