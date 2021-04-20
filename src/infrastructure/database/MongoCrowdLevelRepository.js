@@ -1,5 +1,3 @@
-//const mongodb  = require('mongodb');
-//const MongoClient = mongodb.MongoClient;
 const mongoose = require('mongoose');
 
 const CrowdRepository = require('../../application/contracts/CrowdRepository');

@@ -1,12 +1,36 @@
 const axios = require('axios');
 
 const GetFacilities = async(dependencies) => {
-	
-	await axios.get('https://jsonplaceholder.typicode.com/todos/1')
+
+	const encryptionService = dependencies.EncryptionService;
+	const { facilityRepository } = dependencies.DBService;
+
+	const body = {
+		query: `{ geojsonPoly }`
+	}
+
+	await axios.post('https://www.spaceout.gov.sg/graphql', body) 
     .then(response => {
     	const { data } = response;
-    	console.log('response: ', data)
+
+    	return new Promise(async (resolve) => {
+    		encryptionService.decrypt('pyRYtDWQLu83RaPCNZudQdW4WbtDdF6q', data.data.geojsonPoly)
+    		.then(async(d) => {
+            	const facilities = JSON.parse(d);
+            	//console.log(facilities.jsonstring.features[0]);
+            	//console.log(facilities.jsonstring.features[0].geometry);
+            	//console.log(facilities.jsonstring.features[0].properties);
+
+            	const arr = facilities.jsonstring.features.map(f => f.properties);
+            	await facilityRepository.addMany(arr);
+            	resolve();
+            });
+    	});
     })
+    .then(async () => {
+		const data = await facilityRepository.getAll();
+		console.log('Get Facilities: ', data);
+	})
     .catch(function (error) {
 	    // handle error
 	    console.log('error: ', error);
