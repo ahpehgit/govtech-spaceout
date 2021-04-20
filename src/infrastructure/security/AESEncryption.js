@@ -1,6 +1,5 @@
 const {
-  scrypt,
-  randomFill,
+  randomBytes,
   createCipheriv,
   scryptSync,
   createDecipheriv
@@ -16,6 +15,23 @@ module.exports = class AESEncryption extends EncryptionService {
         // In this case for AES256, it is 32 bytes (256 bits).
         this.keyLength = 32;
         this.algorithm = 'aes-256-cbc';
+    }
+
+    async encrypt(secretKey, plaintext) {
+        return new Promise((resolve, reject) => {
+            const iv = randomBytes(16); // Generate random 16 byte IV
+            try {
+                const cipher = createCipheriv(this.algorithm, secretKey, iv);
+                let encrypted = cipher.update(plaintext, 'utf8', 'hex');
+
+                encrypted += cipher.final('hex');
+                const en = (Buffer.from(iv).toString('hex') + ':' + encrypted);
+                return resolve(en);
+            }
+            catch(err) {
+                return reject(err);
+            }
+        });
     }
 
     async decrypt(secretKey, encrypted) {
