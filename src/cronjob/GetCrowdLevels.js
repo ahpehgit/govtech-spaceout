@@ -25,7 +25,7 @@ const GetCrowdLevels = async(dependencies) => {
 			//await crowdLevelRepository.add({id: d.id, band: d.band, createdAt: new Date(timestamp), trend: d.trend});
 			
 			const arr = [];
-			for (let i=0; i<10; i++) {
+			for (let i=0; i<20; i++) {
 				const timestamp = Date.parse(data.data.facilities[i].createdAt);
 				data.data.facilities[i].createdAt = new Date(timestamp);
 				arr.push(data.data.facilities[i]);

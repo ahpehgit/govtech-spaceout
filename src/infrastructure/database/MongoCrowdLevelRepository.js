@@ -48,8 +48,13 @@ module.exports = class MongoCrowdLevelRepository extends CrowdRepository {
         return crowdObjs.map((c) => new CrowdLevel(c.id, c.band, c.createdAt, c.trend));
     }
 
-    async getAll(start = 0, limit = 10, filter = {}) {
-        const data = await Model.find();
+    async getAll(page = 1, limit = 10, sort = '', order = 'asc', filter = {}) {
+        const start = (page - 1) * limit;
+        const sortBy = order === 'desc'? '-'.concat(sort) : sort;
+
+        //filter = {band: {$eq: -2}
+        
+        const data = await Model.find(filter).sort(sortBy).skip(start).limit(limit);
         return data.map((d) => {
             return new CrowdLevel(d.id, d.band, d.createdAt, d.trend);
         });

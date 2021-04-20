@@ -9,7 +9,7 @@ module.exports = class CrowdRepository {
         return Promise.reject(new Error('Method not implemented'));
     }
 
-    getAll(start = 0, limit = 10, filter = {}) {
+    getAll(page = 1, limit = 10, sort = '', order = 'asc', filter = {}) {
         return Promise.reject(new Error('Method not implemented'));
     }
 
