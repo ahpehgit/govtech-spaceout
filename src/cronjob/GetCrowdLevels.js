@@ -16,6 +16,32 @@ const GetCrowdLevels = async(dependencies) => {
 			const ids = await crowdLevelRepository.getAllIds();
 			//console.log(ids);
 
+			let seen = {};
+			const nonDupData = data.data.facilities.filter(d => {
+				const { id, createdAt } = d;
+				const timestamp = Date.parse(createdAt);
+				const key = id + '_' + timestamp;
+
+				if (!seen.hasOwnProperty(key)) {
+					seen = {...seen, [key]: key};
+                    return true;
+				}
+				return false;
+			});
+			
+			const arr = [];
+			nonDupData.forEach(d => {
+				const { id, createdAt } = d;
+				const timestamp = Date.parse(createdAt);
+				const key = id + '_' + timestamp;
+
+				if (!ids.includes(key)) { //prevent duplicate records to be inserted. Assume unique id by id and createdAt
+					d.createdAt = new Date(timestamp);
+					arr.push(d);
+				}
+			});
+
+			/*
 			const arr = [];
 			data.data.facilities.forEach(d => {
 				const id = d.id;
@@ -25,6 +51,7 @@ const GetCrowdLevels = async(dependencies) => {
 					arr.push(d);
 				}
 			});
+			*/
 			//console.log(arr);
 			await crowdLevelRepository.addMany(arr);
 			resolve();
