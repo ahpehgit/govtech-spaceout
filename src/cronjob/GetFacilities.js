@@ -21,15 +21,19 @@ const GetFacilities = async(dependencies) => {
             	//console.log(facilities.jsonstring.features[0].geometry);
             	//console.log(facilities.jsonstring.features[0].properties);
 
+				const ids = await facilityRepository.getAllIds();
             	const arr = facilities.jsonstring.features.map(f => f.properties);
-            	await facilityRepository.addMany(arr);
+				const toBeAdded = arr.filter(d => !ids.includes(d.ID));
+				//console.log(toBeAdded);
+            	await facilityRepository.addMany(toBeAdded);
+
             	resolve();
             });
     	});
     })
     .then(async () => {
-		const data = await facilityRepository.getAll();
-		console.log('Get Facilities: ', data);
+		//const data = await facilityRepository.getAll();
+		//console.log('Get Facilities: ', data);
 	})
     .catch(function (error) {
 	    // handle error

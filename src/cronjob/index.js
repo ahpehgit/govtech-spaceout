@@ -24,8 +24,8 @@ const start = (dependencies, schedule) => {
             });
         */
 		
-		//await GetFacilities(dependencies);
-		//await GetCrowdLevels(dependencies);
+		await GetFacilities(dependencies);
+		await GetCrowdLevels(dependencies);
 
         console.log('Cron job running every 5 seconds');
 	});

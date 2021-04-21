@@ -58,6 +58,13 @@ module.exports = class MongoCrowdLevelRepository extends CrowdRepository {
         });
     }
 
+    async getAllIds() {
+        const data = await Model.find().select({"id": 1, "createdAt": 1, "_id": 0}); //assume id append with createdAt to set as unique record id
+        //const dictionary = data.reduce((a, x) => ({...a, [x.id + '_' + x.createdAt.getTime()]: x}), []);
+        //return dictionary;
+        return data.map(d => d.id + '_' + d.createdAt.getTime());
+    }
+
     async deleteAll() {
         return await Model.deleteMany({})
         .then(() => {
