@@ -37,7 +37,7 @@ module.exports = class MongoCrowdLevelRepository extends CrowdRepository {
 
         await Model.insertMany(crowdObjs)
         .then(() => {
-            console.log(`${crowdObjs.length} Crowd levels inserted`); 
+            console.log(`${crowdObjs.length} crowd levels inserted`); 
         })
         .catch(err => {
             throw err;
@@ -56,6 +56,18 @@ module.exports = class MongoCrowdLevelRepository extends CrowdRepository {
         return data.map((d) => {
             return new CrowdLevel(d.id, d.band, d.createdAt, d.trend);
         });
+    }
+
+    async getAllByDateRange(start = null, end = null) {
+        if (start && end) {
+            console.log(start, ", ", end);
+            const filter = { createdAt: { $gte: start, $lte: end } }
+            const data = await Model.find(filter);
+
+            return data.map((d) => new CrowdLevel(d.id, d.band, d.createdAt, d.trend));
+        } else {
+            return await this.getAll(1, 1000)
+        }
     }
 
     async getAllIds() {

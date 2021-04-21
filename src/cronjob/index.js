@@ -24,10 +24,12 @@ const start = (dependencies, schedule) => {
             });
         */
 		
-		await GetFacilities(dependencies);
-		await GetCrowdLevels(dependencies);
+		const getFacilities = GetFacilities(dependencies);
+		const getCrowdLevels = GetCrowdLevels(dependencies);
 
-        console.log('Cron job running every 5 seconds');
+		Promise.all([getFacilities, getCrowdLevels])
+		.then(() => console.log('Cron job running every 5 seconds'))
+        
 	});
 }
 
