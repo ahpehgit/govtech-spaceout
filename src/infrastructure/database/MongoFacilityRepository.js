@@ -53,11 +53,16 @@ module.exports = class MongoFacilityRepository extends FacilityRepository {
 
     async getAll(page = 1, limit = 10, sort = '', order = 'asc', filter = {}) {
         const start = (page - 1) * limit;
-        const sortBy = order === 'desc'? '-'.concat(sort) : sort;
+        const sortBy = order === 'desc'? '-'.concat(sort.toUpperCase()) : sort.toUpperCase();
 
-        //filter = {band: {$eq: -2}
-        
-        const data = await Model.find(filter).sort(sortBy).skip(start).limit(limit);
+        //filter = {NAME: {$regex: 'AN'}}
+        let f = {};
+        for (let key in filter) {
+            //console.log(key, ':', filter[key]);
+            //f = {...f, [key]: { $regex: filter[key] } }
+            f = {...f, [key]: new RegExp(filter[key])}
+        }
+        const data = await Model.find(f).sort(sortBy).skip(start).limit(limit);
         return data.map((d) => {
             return new Facility(d.ID, d.NAME, d.TYPE, d.CENTER, d.ADDRESS, d.BLK_HOUSE, d.ROAD_NAME, d.OTHER_NAME, d.POSTALCODE);
         });
