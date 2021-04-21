@@ -63,6 +63,11 @@ module.exports = class MongoFacilityRepository extends FacilityRepository {
         });
     }
 
+    async getAllIds() {
+        const data = await Model.find().select({"ID": 1, "_id": 0}); // discard internal mongodb id
+        return data.map(d => d.ID);
+    }
+
     async deleteAll() {
         return await Model.deleteMany({})
         .then(() => {

@@ -13,6 +13,10 @@ module.exports = class CrowdRepository {
         return Promise.reject(new Error('Method not implemented'));
     }
 
+    getAllIds() {
+        return Promise.reject(new Error('Method not implemented'));
+    }
+
     deleteAll() {
     	return Promise.reject(new Error('Method not implemented'));
     }
