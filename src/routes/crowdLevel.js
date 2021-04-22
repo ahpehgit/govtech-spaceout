@@ -2,7 +2,7 @@ const express = require('express');
 const CrowdLevelController = require('../controllers/CrowdLevelController');
 const authenticateToken = require('./authenticateToken');
 
-// address - /<host>:<port>/facilities
+// address - /<host>:<port>/crowdLevels
 // load dependencies
 
 const crowdLevelRouter = (dependencies) => {
