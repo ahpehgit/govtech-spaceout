@@ -5,9 +5,9 @@ module.exports = (dependencies) => {
     const { authorisedUserRepository } = dependencies.DBService;
 
     const login = (req, res, next) => {
+        //localhost:3000/login/?name=admin&password=somepassword
 
         const query = Login(authorisedUserRepository);
-
         let name = null, password = null;
 
         if (req.query.name) name = req.query.name;

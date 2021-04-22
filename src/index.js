@@ -24,7 +24,7 @@ dependencies.DBService.initDatabase().then(() => {
     app.use('/', routes(dependencies));
 
     // * Cron * //
-    cronjob.start(dependencies, '*/5 * * * * *');
+    cronjob.start(dependencies, '* */30 * * * *');
 
     // * Start * //
     app.listen(port, () =>
