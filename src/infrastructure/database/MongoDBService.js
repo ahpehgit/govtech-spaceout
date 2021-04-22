@@ -36,6 +36,7 @@ module.exports = class MongoDBService extends DBService {
             });
             */
 
+            /*
             const promise1 = this.crowdLevelRepository.deleteAll()
             .then(() => {
                 //const timestamp = Date.parse('19 April 2021, 05:00 PM');
@@ -52,9 +53,12 @@ module.exports = class MongoDBService extends DBService {
 
             Promise.all([promise1, promise2, promise3])
             .then(async () => {
-                const hash = bcrypt.hashSync('somepassword', 10);
+                //* Insert sample user 'admin' to use for login later
+                const saltRounds = 10;
+                const hash = bcrypt.hashSync('somepassword', saltRounds);
                 this.authorisedUserRepository.add({name: 'admin', password: hash});
             })
+            */
         })
         .catch(error => {
             throw error;

@@ -6,6 +6,8 @@ module.exports = (dependencies) => {
 
     const getAll = (req, res, next) => {
 
+        //localhost:3000/crowdLevels/?start=2020-11-03T00:00:00.000Z&end=2021-04-22T12:58:00.000Z
+        
         const query = GetCrowdLevels(crowdLevelRepository, facilityRepository);
 
         let start = null, end = null;

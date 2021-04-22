@@ -17,6 +17,18 @@ module.exports = class CrowdRepository {
         return Promise.reject(new Error('Method not implemented'));
     }
 
+    getAllAverageBandByDateRange(start, end) {
+        return Promise.reject(new Error('Method not implemented'));
+    }
+
+    getAllFacilityIds() {
+        return Promise.reject(new Error('Method not implemented'));
+    }
+
+    getAllByFacilityIds(facilityIds) {
+        return Promise.reject(new Error('Method not implemented'));
+    }
+
     getAllIds() {
         return Promise.reject(new Error('Method not implemented'));
     }

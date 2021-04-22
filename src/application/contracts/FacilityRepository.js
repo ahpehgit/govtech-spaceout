@@ -17,6 +17,10 @@ module.exports = class FacilityRepository {
         return Promise.reject(new Error('Method not implemented'));
     }
 
+    getAllByIds(ids) {
+        return Promise.reject(new Error('Method not implemented'));
+    }
+
     deleteAll() {
     	return Promise.reject(new Error('Method not implemented'));
     }

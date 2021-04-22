@@ -73,6 +73,17 @@ module.exports = class MongoFacilityRepository extends FacilityRepository {
         return data.map(d => d.id);
     }
 
+    async getAllByIds(ids) {
+        const filter = {
+            'id': { $in: ids }
+        };
+        
+        const data = await Model.find(filter);
+        return data.map((d) => {
+            return new Facility(d.id, d.name, d.type, d.center, d.address, d.blk_house, d.road_name, d.other_name, d.postalCode);
+        });
+    }
+
     async deleteAll() {
         return await Model.deleteMany({})
         .then(() => {
