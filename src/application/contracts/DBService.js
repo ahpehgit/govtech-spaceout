@@ -5,6 +5,7 @@ module.exports = class DBService {
         this.facilityRepository = null;
         this.crowdLevelRepository = null;
         this.messageRepository = null;
+        this.authorisedUserRepository = null;
     }
 
     initDatabase() {
