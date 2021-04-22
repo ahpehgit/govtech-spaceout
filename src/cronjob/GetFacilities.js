@@ -15,7 +15,7 @@ const GetFacilities = async(dependencies) => {
     	const { data } = response;
 
     	return new Promise(async (resolve) => {
-    		encryptionService.decrypt('pyRYtDWQLu83RaPCNZudQdW4WbtDdF6q', data.data.geojsonPoly)
+    		encryptionService.decrypt(process.env.ENCRYPTION_KEY, data.data.geojsonPoly)
     		.then(async(d) => {
             	const facilities = JSON.parse(d);
             	//console.log(facilities.jsonstring.features[0]);
