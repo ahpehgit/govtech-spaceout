@@ -1,4 +1,3 @@
-const InMemoryDBService = require('../infrastructure/database/InMemoryDBService');
 const MongoDBService = require('../infrastructure/database/MongoDBService');
 const AESEncryption = require('../infrastructure/security/AESEncryption');
 

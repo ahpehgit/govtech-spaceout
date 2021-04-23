@@ -1,7 +1,6 @@
 const {
   randomBytes,
   createCipheriv,
-  scryptSync,
   createDecipheriv
 } = require('crypto');
 
@@ -50,26 +49,4 @@ module.exports = class AESEncryption extends EncryptionService {
             }
         });
     }
-
-    /*
-    async decrypt(secretKey, encrypted) {
-
-        // Decrypt with fixed salt
-        const key = scryptSync(secretKey, 'salt', this.keyLength);
-        return new Promise((resolve, reject) => {
-            const cipher = encrypted.split('.');
-            const iv = Buffer.from(cipher[0], 'hex');
-            
-            try {
-                const decipher = createDecipheriv(this.algorithm, key, iv);
-                let decrypted = decipher.update(cipher[1], 'hex', 'utf8');
-                decrypted += decipher.final('utf8');
-                return resolve(decrypted);
-            }
-            catch(err) {
-                return reject(err);
-            }
-        });
-    }
-    */
 }
