@@ -11,8 +11,8 @@ const crowdLevelRouter = (dependencies) => {
     // load controller with dependencies
     const controller = CrowdLevelController(dependencies);
 
-    //router.get('/', authenticateToken, controller.getAll); //token middleware
-    router.get('/', controller.getAll)    
+    router.get('/', authenticateToken, controller.getAll); //token middleware
+    //router.get('/', controller.getAll)    
     return router;
 };
 

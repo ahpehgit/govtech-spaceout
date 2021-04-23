@@ -36,20 +36,9 @@ module.exports = class MongoDBService extends DBService {
             });
             */
 
-            /*
-            const promise1 = this.crowdLevelRepository.deleteAll()
-            .then(() => {
-                //const timestamp = Date.parse('19 April 2021, 05:00 PM');
-                //this.crowdLevelRepository.add({id: 'defc3b96e43b4714924b81117d7337f2', band: -1, createdAt: new Date(timestamp), trend: false})
-            });
-
-            const promise2 = this.facilityRepository.deleteAll()
-            .then(() => {
-            });
-
-            const promise3 = this.authorisedUserRepository.deleteAll()
-            .then(() => {
-            });
+            const promise1 = this.crowdLevelRepository.deleteAll();
+            const promise2 = this.facilityRepository.deleteAll();
+            const promise3 = this.authorisedUserRepository.deleteAll();
 
             Promise.all([promise1, promise2, promise3])
             .then(async () => {
@@ -58,7 +47,7 @@ module.exports = class MongoDBService extends DBService {
                 const hash = bcrypt.hashSync('somepassword', saltRounds);
                 this.authorisedUserRepository.add({name: 'admin', password: hash});
             })
-            */
+            
         })
         .catch(error => {
             throw error;
