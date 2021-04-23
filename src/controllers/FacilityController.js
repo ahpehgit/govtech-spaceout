@@ -5,9 +5,9 @@ module.exports = (dependencies) => {
     const { facilityRepository } = dependencies.DBService;
 
     const getAll = (req, res, next) => {
-        //http://localhost:3000/facilities/?page=1&sort=NAME&order=asc&filter={%22road_name%22:%20%22ANG%20MO%22}
-        //http://localhost:3000/facilities/?page=1&sort=NAME&order=asc&filter={%22name%22:%20%22100%22,%20%22road_name%22:%20%22AN%22}
-        //http://localhost:3000/facilities/?page=1&limit=100
+        //localhost:3000/facilities/?page=1&limit=10&sort=NAME&order=asc&filter={%22road_name%22:%20%22ANG%20MO%22}
+        //localhost:3000/facilities/?page=1&sort=NAME&order=asc&filter={%22name%22:%20%22100%22,%20%22road_name%22:%20%22AN%22}
+        //localhost:3000/facilities/?page=1&limit=100
         
         const query = GetFacilities(facilityRepository);
 
