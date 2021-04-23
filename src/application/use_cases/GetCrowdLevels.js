@@ -92,8 +92,10 @@ module.exports = (CrowdLevelRepository, FacilityRepository) => {
 			return result;
 		}
 		
-		//* TODO change to return []
-        return await CrowdLevelRepository.getAllByDateRange(start, end);
+		return await CrowdLevelRepository.getAllByDateRange(start, end); //testing
+        
+        //* Return []
+        //return [];
     }
 
     return {

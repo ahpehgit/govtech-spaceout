@@ -14,21 +14,14 @@ const GetFacilities = async(dependencies) => {
     .then(response => {
         const { data } = response;
 
-        return new Promise(async (resolve) => {
+        return new Promise(async (resolve, reject) => {
+            
             encryptionService.decrypt(process.env.ENCRYPTION_KEY, data.data.geojsonPoly)
             .then(async(d) => {
                 const facilities = JSON.parse(d);
                 //console.log(facilities.jsonstring.features[0]);
                 //console.log(facilities.jsonstring.features[0].geometry);
                 //console.log(facilities.jsonstring.features[0].properties);
-
-                const ids = await facilityRepository.getAllIds();
-                /*
-                const arr = facilities.jsonstring.features.map(f => {
-                    const { ID, NAME, TYPE, CENTER, ADDRESS, BLK_HOUSE, ROAD_NAME, OTHER_NAME, POSTALCODE } = f.properties;
-                    return new Facility(ID, NAME, TYPE, CENTER, ADDRESS, BLK_HOUSE, ROAD_NAME,OTHER_NAME, POSTALCODE);
-                });
-                */
 
                 let seen = {};
                 //* Filter to remove duplicated properties
@@ -41,10 +34,11 @@ const GetFacilities = async(dependencies) => {
                     return false;
                 }).map(f => {
                     const { ID, NAME, TYPE, CENTER, ADDRESS, BLK_HOUSE, ROAD_NAME, OTHER_NAME, POSTALCODE } = f.properties;
-                    return new Facility(ID, NAME, TYPE, CENTER, ADDRESS, BLK_HOUSE, ROAD_NAME,OTHER_NAME, POSTALCODE);
+                    return new Facility(ID, NAME, TYPE, CENTER, ADDRESS, BLK_HOUSE, ROAD_NAME, OTHER_NAME, POSTALCODE);
                 });
 
-                const toBeAdded = arr.filter(d => !ids.includes(d.id));
+                const ids = await facilityRepository.getAllIds();
+                const toBeAdded = arr.filter(d => !ids.includes(d.id)); //check against current db
                 await facilityRepository.addMany(toBeAdded);
 
                 resolve();
@@ -58,6 +52,7 @@ const GetFacilities = async(dependencies) => {
     .catch(function (error) {
         // handle error
         console.log('error: ', error);
+        reject(error)
     });
 }
 
