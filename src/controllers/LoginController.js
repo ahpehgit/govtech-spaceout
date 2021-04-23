@@ -14,8 +14,12 @@ module.exports = (dependencies) => {
         if (req.query.password) password = req.query.password;
 
         query.Execute(name, password).then((data) => {
-            if (data) res.json(data);
-            else res.sendStatus(401);
+            if (data) {
+                res.json(data);
+            }
+            else {
+                res.sendStatus(401);
+            }
         }, (err) => {
             next(err);
         });

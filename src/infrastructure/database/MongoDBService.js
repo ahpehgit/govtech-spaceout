@@ -36,6 +36,7 @@ module.exports = class MongoDBService extends DBService {
             });
             */
 
+            
             const promise1 = this.crowdLevelRepository.deleteAll();
             const promise2 = this.facilityRepository.deleteAll();
             const promise3 = this.authorisedUserRepository.deleteAll();

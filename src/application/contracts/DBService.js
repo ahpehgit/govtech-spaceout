@@ -4,7 +4,6 @@ module.exports = class DBService {
     constructor() {
         this.facilityRepository = null;
         this.crowdLevelRepository = null;
-        this.messageRepository = null;
         this.authorisedUserRepository = null;
     }
 
