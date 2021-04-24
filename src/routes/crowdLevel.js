@@ -1,6 +1,6 @@
 const express = require('express');
 const CrowdLevelController = require('../controllers/CrowdLevelController');
-const authenticateToken = require('./authenticateToken');
+const AuthenticateController = require('../controllers/AuthenticateController');
 
 // address - /<host>:<port>/crowdLevels
 // load dependencies
@@ -10,8 +10,9 @@ const crowdLevelRouter = (dependencies) => {
 
     // load controller with dependencies
     const controller = CrowdLevelController(dependencies);
+    const authenticateController = AuthenticateController(dependencies);
 
-    router.get('/', authenticateToken, controller.getAll); //token middleware
+    router.get('/', authenticateController.authenticateToken, controller.getAll); //token middleware
     //router.get('/', controller.getAll)    
     return router;
 };

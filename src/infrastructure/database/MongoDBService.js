@@ -36,7 +36,6 @@ module.exports = class MongoDBService extends DBService {
             });
             */
 
-            
             const promise1 = this.crowdLevelRepository.deleteAll();
             const promise2 = this.facilityRepository.deleteAll();
             const promise3 = this.authorisedUserRepository.deleteAll();
@@ -47,8 +46,7 @@ module.exports = class MongoDBService extends DBService {
                 const saltRounds = 10;
                 const hash = bcrypt.hashSync('somepassword', saltRounds);
                 this.authorisedUserRepository.add({name: 'admin', password: hash});
-            })
-            
+            });
         })
         .catch(error => {
             throw error;
