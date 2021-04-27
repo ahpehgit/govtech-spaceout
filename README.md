@@ -32,3 +32,6 @@
   - Assumed id field belongs to the id of the facility
 - Data fetch from the spaceout may contain duplicated records
 - Data fetch from both facilities and crowd levels may not be correctly matched
+
+## Others
+- The architecture design is located at the /architecture/AWS.pdf
