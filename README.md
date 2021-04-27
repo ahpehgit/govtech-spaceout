@@ -8,17 +8,17 @@
 - mongodb
 
 ## Install
-- Run npm install to download dependencies
+- Run "npm install" to download dependencies
 - Install mongodb
 
 ## Run
 - npm start
-- npm test
+- npm test (test using jest)
 
 ## Routes
  There are 3 routes configured:
  
-   GET /facilities: to get out facilitiy information
+   GET /facilities: to get out facility information
    
 	localhost:3000/facilities/?page=1&limit=10&sort=name&order=asc&filter={"name": "100", "road_name": "AN"}
 	localhost:3000/facilities/?page=1&limit=10&sort=name&order=desc
