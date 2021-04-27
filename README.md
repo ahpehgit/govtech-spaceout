@@ -1,5 +1,8 @@
 # govtech-spaceout
 
+## Developer Info
+ - Alex Peh (ahpeh@hotmail.com)
+ 
 ## Requirements
 - npm
 - mongodb
