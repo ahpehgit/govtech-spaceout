@@ -17,7 +17,7 @@ module.exports = class MongoDBService extends DBService {
         const dbName = "spaceout_db";
         const url = `mongodb://localhost:27017/${dbName}`;
 
-        mongoose.connect(url, { useNewUrlParser: true })
+        return mongoose.connect(url, { useNewUrlParser: true })
         .then(() => {
             console.log("Mongo Database created!");
 
