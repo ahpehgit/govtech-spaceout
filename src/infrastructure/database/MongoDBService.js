@@ -46,8 +46,7 @@ module.exports = class MongoDBService extends DBService {
                 const saltRounds = 10;
                 const hash = bcrypt.hashSync('somepassword', saltRounds);
                 this.authorisedUserRepository.add({name: 'admin', password: hash});
-            })
-            
+            });
         })
         .catch(error => {
             throw error;

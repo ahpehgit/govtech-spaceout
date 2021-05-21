@@ -12,10 +12,9 @@ const GetCrowdLevels = async(dependencies) => {
     .then(response => {
         const { data } = response;
 
-        return new Promise(async (resolve) => {
-            const ids = await crowdLevelRepository.getAllIds();
-            //console.log(ids);
-
+        return new Promise(async (resolve, reject) => {
+            
+            //* Filter duplicate
             let seen = {};
             const nonDupData = data.data.facilities.filter(d => {
                 const { id, createdAt } = d;
@@ -29,6 +28,7 @@ const GetCrowdLevels = async(dependencies) => {
                 return false;
             });
             
+            const ids = await crowdLevelRepository.getAllIds();
             const arr = [];
             nonDupData.forEach(d => {
                 const { id, createdAt } = d;
@@ -52,6 +52,7 @@ const GetCrowdLevels = async(dependencies) => {
     .catch(function (error) {
         // handle error
         console.log('error: ', error);
+        reject(error);
     });
 }
 
