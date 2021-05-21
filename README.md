@@ -1,24 +1,31 @@
 # govtech-spaceout
 
+## Developer Info
+ - Alex Peh (ahpeh@hotmail.com)
+ 
 ## Requirements
 - npm
 - mongodb
 
 ## Install
-- Run npm install to download dependencies
+- Run "npm install" to download dependencies
 - Install mongodb
+
+## Run
+- npm start
+- npm test (test using jest)
 
 ## Routes
  There are 3 routes configured:
  
-   GET /facilities: to get out facilitiy information
+   GET /facilities: to get out facility information
    
 	localhost:3000/facilities/?page=1&limit=10&sort=name&order=asc&filter={"name": "100", "road_name": "AN"}
 	localhost:3000/facilities/?page=1&limit=10&sort=name&order=desc
 
   GET /crowdLevels: to get out facility and its crowd information
     
-	localhost:3000/crowdLevels/?start=2020-11-03T00:00:00.000Z&end=2021-04-23T12:58:00.000Z
+	localhost:3000/crowdLevels/?start=2020-11-03T00:00:00.000Z&end=2021-12-31T23:59:00.000Z
   
   GET /login: simulate login to get a jwt token. (Default admin user created in mongo db)
   
