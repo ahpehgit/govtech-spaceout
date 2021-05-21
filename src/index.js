@@ -32,4 +32,5 @@ dependencies.DBService.initDatabase().then(() => {
     );
 }, (err) => {
     console.log(`DB not ready, err:${err}`);
+    process.exit(1);
 });
