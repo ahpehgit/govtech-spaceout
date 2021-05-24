@@ -13,6 +13,11 @@
 
 ## Run
 - npm start
+##### or with Docker installed
+- docker-compose build
+- docker-compose up
+
+## Test
 - npm test (test using jest)
 
 ## Routes
