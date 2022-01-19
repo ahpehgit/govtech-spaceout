@@ -4,3 +4,4 @@ logfile
 node_modules/
 data/
 .git.bfg*
+.DS_Store
