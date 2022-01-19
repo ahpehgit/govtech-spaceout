@@ -28,7 +28,7 @@ dependencies.DBService.initDatabase().then(() => {
 
     // * Start * //
     app.listen(port, () =>
-    console.log(`Example app listening on port ${port}!`),
+    console.log(`Govtech Spaceout app listening on port ${port}!`),
     );
 }, (err) => {
     console.log(`DB not ready, err:${err}`);
