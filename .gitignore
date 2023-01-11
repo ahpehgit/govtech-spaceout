@@ -1,6 +1,7 @@
 logfile
 .env.production
 .env.local
+.env.docker
 node_modules/
 data/
 .git.bfg*
