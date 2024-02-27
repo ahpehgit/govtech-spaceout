@@ -1,5 +1,5 @@
 const axios = require('axios');
-axios.defaults.adapter = require('axios/lib/adapters/http');
+//axios.defaults.adapter = require('axios/lib/adapters/http'); //no longer needed after upgrade axios to v1.6.7
 
 require('dotenv').config();
 
