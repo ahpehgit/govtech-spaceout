@@ -19,7 +19,7 @@ module.exports = class MongoDBService extends DBService {
 
         return setTimeout(() => {
             mongoose.set("strictQuery", false);
-            return mongoose.connect(url, { useNewUrlParser: true })
+            return mongoose.connect(url)
                 .then(() => {
                 console.log("Mongo Database created!");
 
