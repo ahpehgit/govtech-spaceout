@@ -12,7 +12,7 @@ const GetCrowdLevels = async(dependencies) => {
     .then(response => {
         const { data } = response;
 
-        return new Promise(async (resolve, reject) => {
+        return new Promise(async (resolve) => {
             
             //* Filter duplicate
             let seen = {};
@@ -52,7 +52,6 @@ const GetCrowdLevels = async(dependencies) => {
     .catch(function (error) {
         // handle error
         console.log('error: ', error);
-        reject(error);
     });
 }
 

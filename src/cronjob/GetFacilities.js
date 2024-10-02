@@ -42,7 +42,7 @@ const GetFacilities = async(dependencies) => {
                 await facilityRepository.addMany(toBeAdded);
 
                 resolve();
-            });
+            }).catch(err => reject(err));
         });
     })
     .then(async () => {
@@ -52,7 +52,6 @@ const GetFacilities = async(dependencies) => {
     .catch(function (error) {
         // handle error
         console.log('error: ', error);
-        reject(error)
     });
 }
 
