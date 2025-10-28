@@ -11,7 +11,7 @@ services:
     depends_on:
       - mongoserver
   mongoserver:
-    container_name: mongo
+    container_name: mongo_server
     image: mongo
     volumes:
       - ./data:/data/db
